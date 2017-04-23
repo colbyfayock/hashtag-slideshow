@@ -1,0 +1,3 @@
+[submodule "hashtag"]
+	path = hashtag
+	url = git@github.com:colbyfayock/hashtag.git
