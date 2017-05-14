@@ -2345,7 +2345,7 @@ body {
 .slideshow {
   overflow: hidden;
   position: relative;
-  background-image: url("/assets/images/flower-bg.jpg");
+  background-image: url("../images/flower-bg.jpg");
   background-size: cover;
   background-position: center center; }
 
@@ -2357,14 +2357,41 @@ body {
   overflow: hidden; }
 
 .slide-image {
-  width: auto;
-  height: 100vh;
+  width: 100%;
+  max-width: 50%;
+  height: auto;
   object-fit: contain;
   margin: 0; }
 
 .slide-details {
   width: 100%;
-  padding: 5%; }
+  padding: 5%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  box-direction: normal;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-direction: column;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  box-pack: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+  -ms-flex-pack: center; }
   .slide-quote .slide-details {
     display: flex;
     flex-direction: column;

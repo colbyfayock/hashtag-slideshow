@@ -45,7 +45,7 @@ export default class Slideshow extends React.Component {
     render() {
 
         return (
-            <Carousel autoplay={true} autoplayInterval={5000} wrapAround={true} decorators={[]}>
+            <Carousel autoplay={false} autoplayInterval={5000} wrapAround={true} decorators={[]}>
                 {
                     this.state.data.map(function(slide, i) {
                         return (

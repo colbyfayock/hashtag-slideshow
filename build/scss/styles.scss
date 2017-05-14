@@ -1,3 +1,4 @@
+@import '../../bower_components/bourbon/app/assets/stylesheets/bourbon';
 @import '../../bower_components/font-awesome/scss/font-awesome';
 
 @import url(https://fonts.googleapis.com/css?family=Domine:400,700);
@@ -20,7 +21,7 @@ body {
 .slideshow {
     overflow: hidden;
     position: relative;
-    background-image: url('/assets/images/flower-bg.jpg');
+    background-image: url('../images/flower-bg.jpg');
     background-size: cover;
     background-position: center center;
 }
@@ -35,8 +36,9 @@ body {
 }
 
 .slide-image {
-    width: auto;
-    height: 100vh;
+    width: 100%;
+    max-width: 50%;
+    height: auto;
     object-fit: contain;
     margin: 0;
 }
@@ -45,6 +47,12 @@ body {
 
     width: 100%;
     padding: 5%;
+
+
+    @include display( flex );
+    @include flex-direction( column );
+    @include justify-content( center );
+
 
     .slide-quote & {
         display: flex;
