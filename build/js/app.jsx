@@ -4,5 +4,5 @@ import Slideshow from './Slideshow';
 
 ReactDOM.render(
   <Slideshow />,
-  document.getElementById('slideshow')
+  document.getElementsByClassName('slideshow')[0]
 );

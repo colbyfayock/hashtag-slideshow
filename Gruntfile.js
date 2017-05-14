@@ -33,6 +33,24 @@ module.exports = function(grunt) {
             }
         },
 
+        copy: {
+
+            assets: {
+                files: [
+                    {
+                        expand: true,
+                        src: [
+                            './bower_components/font-awesome/fonts/*'
+                        ],
+                        dest: './assets/fonts/',
+                        flatten: true,
+                        filter: 'isFile'
+                    }
+                ],
+            }
+
+        },
+
         watch: {
             js: {
                 files: './build/js/**',
@@ -50,6 +68,10 @@ module.exports = function(grunt) {
 
     });
 
-    grunt.registerTask('default', ['browserify', 'sass']);
+    grunt.registerTask('default', [
+        'browserify',
+        'sass',
+        'copy'
+    ]);
 
 };

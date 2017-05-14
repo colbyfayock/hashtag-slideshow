@@ -1,36 +1,90 @@
 import React from 'react';
+import Interweave from 'interweave';
+import HashtagMatcher from 'interweave/matchers/Hashtag';
 
 export default class Slide extends React.Component {
 
-    slideMedia() {
+    render() {
+
+        var slide_class = 'slide',
+            slide_contents = [];
+
+        if ( this.props.media && this.props.media[0] && this.props.media[0].media_url ) {
+            slide_class += ' slide-media';
+            slide_contents.push(<SlideImage key={'image'} url={this.props.media[0].media_url}></SlideImage>);
+        } else {
+            slide_class += ' slide-quote';
+        }
+
+        slide_contents.push(<SlideDetails key={'details'} {...this.props}></SlideDetails>);
+
         return (
-            <div className="slide-media">
-                <div className="slide-media-headline">
-                    <h2><span><strong>{ this.props.screen_name }</strong> said</span> <strong>"{ this.props.text.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '') }"</strong> on <strong>{ this.props.source }</strong></h2>
-                </div>
-                <img src={ this.props.media[0].media_url }/>
-                <span className="slide-media-background" style={{ backgroundImage:  'url(' + this.props.media[0].media_url + ')'  }}></span>
+            <div className={slide_class}>
+                {slide_contents}
             </div>
         );
+
     }
 
-    slideQuote() {
+}
+
+class SlideImage extends React.Component {
+
+    render() {
+
         return (
-            <div className="slide-quote">
-                <h2>
-                    <span><strong>{ this.props.screen_name }</strong> said</span>
-                    <span><strong>"{ this.props.text.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '') }"</strong></span>
-                    <span>on <strong>{ this.props.source }</strong></span>
-                </h2>
-            </div>
+            <img className="slide-image" src={ this.props.url }/>
         );
+
+    }
+
+}
+
+class SlideDetails extends React.Component {
+
+    parseText(string) {
+        
+        if ( !string || typeof string !== 'string' ) return string;
+
+        var parsed = string.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '');
+
+        if ( parsed.indexOf('#') !== -1 ) {
+            parsed = string.replace(/(^|\s)(#[a-z\d-]+)/ig, "$1<span class='hash_tag'>$2</span>");
+        }
+
+        return (
+            <Interweave
+                content={parsed}
+                matchers={[new HashtagMatcher('hashtag')]}
+                />
+        );
+
+    }
+
+    getIcon(source) {
+
+        var icons = {
+            instagram: 'fa-instagram',
+            twitter: 'fa-twitter'
+        }
+
+        return icons[source];
+
     }
 
     render() {
 
         return (
-            <div className="slide">
-                { this.props.media ? this.slideMedia() : this.slideQuote() }
+            <div className="slide-details">
+                <h2 className="slide-headline">
+                    { this.parseText(this.props.text) }
+                </h2>
+                <p className="slide-author">
+                    <i className={ 'fa ' + this.getIcon(this.props.source) }></i>
+                    { this.props.screen_name }
+                </p>
+                <p>
+                </p>
             </div>
         );
 

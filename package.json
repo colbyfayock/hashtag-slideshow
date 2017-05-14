@@ -7,12 +7,14 @@
     "browserify": "^13.0.1",
     "grunt": "^0.4.5",
     "grunt-browserify": "^5.0.0",
+    "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-sass": "^1.2.0",
+    "interweave": "^4.0.0",
     "jit-grunt": "^0.9.1",
     "nuka-carousel": "^2.0.2",
-    "react": "^15.1.0",
+    "react": "^15.5.4",
     "react-addons-update": "^15.1.0",
-    "react-dom": "^15.1.0"
+    "react-dom": "^15.5.4"
   }
 }

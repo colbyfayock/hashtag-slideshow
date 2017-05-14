@@ -9,16 +9,26 @@ export default class Slideshow extends React.Component {
         super(props);
 
         this.state = {
-            data: []
+            data: [],
         }
+
+        this.getHashtag = this.getHashtag.bind(this);
         
     }
 
     componentDidMount() {
 
+        this.getHashtag();
+
+        this.interval = setInterval(this.getHashtag, 30000);
+
+    }
+
+    getHashtag() {
+
         var _that = this;
 
-        fetch('./hashtag.json').then(function(response) { 
+        fetch('./hashtag/output/hashtag.json').then(function(response) { 
             
             return response.json();
 
@@ -35,7 +45,7 @@ export default class Slideshow extends React.Component {
     render() {
 
         return (
-            <Carousel autoplay={true} wrapAround={true}>
+            <Carousel autoplay={true} autoplayInterval={5000} wrapAround={true} decorators={[]}>
                 {
                     this.state.data.map(function(slide, i) {
                         return (
