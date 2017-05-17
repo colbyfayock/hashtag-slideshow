@@ -2334,6 +2334,9 @@ body {
   color: rgba(103, 80, 108, 0.7);
   margin: 0; }
 
+.slideshow {
+  pointer-events: none; }
+
 .slideshow,
 .slider,
 .slider-frame,

@@ -45,7 +45,7 @@ export default class Slideshow extends React.Component {
     render() {
 
         return (
-            <Carousel autoplay={true} autoplayInterval={5000} wrapAround={true} decorators={[]}>
+            <CarouselSlider autoplay={true} autoplayInterval={5000} swiping={false} wrapAround={true} decorators={[]}>
                 {
                     this.state.data.map(function(slide, i) {
                         return (
@@ -53,8 +53,22 @@ export default class Slideshow extends React.Component {
                         );
                     })
                 }
-            </Carousel>
+            </CarouselSlider>
         );
+
+    }
+
+}
+
+class CarouselSlider extends Carousel {
+
+    constructor(props) {
+        
+        super(props);
+
+        this.handleMouseOver = function() {
+            return;
+        };
 
     }
 
